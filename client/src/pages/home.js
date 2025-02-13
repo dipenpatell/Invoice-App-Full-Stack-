@@ -31,7 +31,6 @@ const HomePage = () => {
       } catch (error) {
         console.error("Error:", error);
       }
-
     };
 
     fetchData();
@@ -175,61 +174,63 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-zinc-900 flex h-screen flex-col gap-5 p-5">
-      <div className="flex justify-between w-full">
-        <button
-          onClick={() => document.getElementById("fileInput").click()}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Import File
-        </button>
-        <input
-          type="file"
-          id="fileInput"
-          onChange={handleFileUpload}
-          className="hidden"
-        />
-        <button
-          onClick={() => {
-            localStorage.setItem("token", "");
-            window.location.reload();
-          }}
-          className="bg-red-500 text-white px-4 py-2 rounded"
-        >
-          Logout
-        </button>
-      </div>
+    <div className="bg-zinc-900 flex h-screen">
+      <div className="flex-1 flex flex-col gap-5 p-5 overflow-hidden">
+        <div className="flex justify-between w-full">
+          <button
+            onClick={() => document.getElementById("fileInput").click()}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Import File
+          </button>
+          <input
+            type="file"
+            id="fileInput"
+            onChange={handleFileUpload}
+            className="hidden"
+          />
+          <button
+            onClick={() => {
+              localStorage.setItem("token", "");
+              window.location.reload();
+            }}
+            className="bg-red-500 text-white px-4 py-2 rounded"
+          >
+            Logout
+          </button>
+        </div>
 
-      <h4 className="text-2xl text-white">Stock</h4>
-      <div className="overflow-auto scrollbar-hide p-5 rounded-md bg-zinc-800">
-        <table class="table-auto">
-          <thead>
-            <tr>
-              <th>Part Type</th>
-              <th>Part Description</th>
-              <th>Product Info</th>
-              <th>Color</th>
-              <th>Quantity</th>
-              <th>Part Number</th>
-              <th>Single Price</th>
-              <th>Bulk Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product, index) => (
-              <tr key={index}>
-                <td>{product.PartType}</td>
-                <td>{product.PartDescription}</td>
-                <td>{product.ProductInfo}</td>
-                <td>{product.Color}</td>
-                <td>{product.Quantity}</td>
-                <td>{product.PartNumber}</td>
-                <td>{product.SingleP}</td>
-                <td>{product.BulkP}</td>
+        <h4 className="text-2xl text-white">Stock</h4>
+        <div className="overflow-auto flex-1 scrollbar-hide p-5 rounded-md bg-zinc-800">
+          <table class="table-auto">
+            <thead>
+              <tr>
+                <th>Part Type</th>
+                <th>Part Description</th>
+                <th>Product Info</th>
+                <th>Color</th>
+                <th>Quantity</th>
+                <th>Part Number</th>
+                <th>Single Price</th>
+                <th>Bulk Price</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map((product, index) => (
+                <tr key={index}>
+                  <td>{product.PartType}</td>
+                  <td>{product.PartDescription}</td>
+                  <td>{product.ProductInfo}</td>
+                  <td>{product.Color}</td>
+                  <td>{product.Quantity}</td>
+                  <td>{product.PartNumber}</td>
+                  <td>{product.SingleP}</td>
+                  <td>{product.BulkP}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
